@@ -1,4 +1,5 @@
-# 🧠 Exercícios de Lógica de Programação em Rust
+# 🧠 Exercícios de Lógica de Programação em Rust <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Rustacean-orig-noshadow.svg/320px-Rustacean-orig-noshadow.svg.png" width="40" alt="Rustacean" title="Rust" />
+
 
 Este repositório contém exercícios de lógica de programação que estou resolvendo para treinar minha base em desenvolvimento e fortalecer meu raciocínio lógico, usando a linguagem **Rust**.
 
