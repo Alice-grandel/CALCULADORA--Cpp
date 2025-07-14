@@ -531,3 +531,221 @@ fn read_number(prompt: &str) -> f64 {
     }
 }
 ```
+
+# EXERCICIO RUST: 7
+
+Um jogo da forca simples feito em Rust rodando no terminal. O objetivo é adivinhar a palavra secreta, letra por letra, com no máximo 3 erros.
+
+---
+
+## 🦀 Tecnologias usadas
+
+- Linguagem: **Rust**
+- Conceitos utilizados:
+  - `Vec` (vetores)
+  - `loop`
+  - `funções`
+  - `match`
+  - `chars()`
+  - Entrada e saída com `stdin`
+  - Controle de fluxo (`if`, `for`, `break`)
+ 
+# CODIGO JOGO DA FORCA:
+
+```
+use std::io;
+
+fn main() {
+    let palavra_secreta = "banana";
+    let mut letras_descobetas = vec!['-'; palavra_secreta.len()];
+    let mut tentativas_erradas = 0;
+    let mut letras_erradas: Vec<char> = Vec::new();
+
+    loop {
+        println!("=== JOGO DA FORCA! ===");
+
+        mostrar_progresso(&letras_descobetas, &letras_erradas, tentativas_erradas);
+
+        let letra = let_letras("Digite uma letra:");
+
+        if palavra_secreta.contains(letra) {
+            for (i, c) in palavra_secreta.chars().enumerate() {
+                if c == letra {
+                    letras_descobetas[i] = letra;
+                }
+            }
+        } else {
+            if !letras_erradas.contains(&letra) {
+                letras_erradas.push(letra);
+                tentativas_erradas += 1;
+            }
+        }
+
+        if !letras_descobetas.contains(&'-') {
+            println!("Parabéns! Você acertou a palavra '{}'.", palavra_secreta);
+            break;
+        }
+
+        if tentativas_erradas >= 3 {
+            println!("Você perdeu! A palavra era '{}'.", palavra_secreta);
+            break;
+        }
+
+        println!("------------------------------------------------");
+    }
+
+    println!("\n=== JOGO ENCERRADO ===");
+}
+
+fn let_letras(mensagem: &str) -> char {
+    loop {
+        println!("{}", mensagem);
+        let mut entrada = String::new();
+        io::stdin().read_line(&mut entrada).expect("Erro");
+
+        if let Some(c) = entrada.trim().chars().next() {
+            return c.to_ascii_lowercase();
+        }
+
+        println!("Digite uma letra válida!");
+    }
+}
+
+fn mostrar_progresso(letras: &Vec<char>, erradas: &Vec<char>, erros: usize) {
+    println!("Palavra: {}", letras.iter().collect::<String>());
+    println!("Letras erradas: {:?}", erradas);
+    println!("Erros: {}", erros);
+}
+```
+
+# EXERCICIO RUST: 8
+
+Este é um jogo da velha (tic-tac-toe) feito em **Rust**, rodando inteiramente no terminal. Dois jogadores se revezam jogando, inserindo as coordenadas da linha e coluna para marcar `X` ou `O` em um tabuleiro 3x3.
+
+## 💡 Funcionalidades
+
+- ✅ Interface de texto simples no terminal
+- ✅ Validação de jogadas (evita sobrescrever posições)
+- ✅ Verificação automática de vitória e empate
+- ✅ Alternância automática entre os jogadores `X` e `O`
+
+## 📷 Exemplo de uso
+
+```bash
+  0 1 2
+0 _ _ _
+1 _ _ _
+2 _ _ _
+
+Vez do jogador 'X'
+Digite a linha e coluna (ex: 0 1): 1 1
+```
+# CODIGO JOGO DA VELHA 🦀: 
+
+```
+use std::io;
+
+fn main() {
+    let mut board = [[' '; 3]; 3];
+    let mut current_player = 'X';
+
+    loop {
+        print_board(&board);
+        println!("Vez do jogador '{}'", current_player);
+        
+      let (row , col) = get_move();
+
+      if board[row][col] != ' ' {
+        println!("Posição ja ocupada tente novamente!");
+           continue;
+        }
+    
+    
+    board[row][col] = current_player;
+
+    if check_winner(&board, current_player) {
+        print_board(&board);
+        println!("Jogador '{}' venceu", current_player);
+           continue;
+    }
+
+    if board_full(&board) {
+       print_board(&board);
+        println!("Empate");
+           continue;
+      
+    }
+      current_player = if current_player == 'X' { 'O' } else { 'X' };
+    
+  }
+}
+
+fn print_board(board: &[[char; 3]; 3]) {
+    println!("\n 0 1 2");
+     for (i, row) in board.iter().enumerate() {
+        print!("{}", i);
+     for &cell in row.iter() {
+        print!("{}", cell);
+     }   
+    println!();
+     }
+    println!();
+}
+
+fn get_move() -> (usize, usize) {
+    loop {
+      println!("Digite a linha e coluna (Ex: 0 1): ");
+       let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Erro");
+
+       let parts: Vec<&str> = input.trim().split_whitespace().collect();
+        if parts.len() != 2 {
+            println!("Entrada invalida!");
+             continue;
+        }
+
+       let row: usize = match parts[0].parse() {
+         Ok(num) if num < 3 => num,
+          _ => {
+            println!("Linha invalida");
+             continue;
+          }
+       };
+
+       let col: usize = match parts[1].parse() {
+         Ok(num) if num < 3 => num,
+          _ => {
+            println!("Valor invalido!");
+             continue;
+          }
+       };
+
+       return(row, col);
+    }
+}
+
+fn check_winner(board: &[[char; 3]; 3], player: char) -> bool {
+  for i in 0..3 {
+    if (board[i][0] == player && board[i][1] == player && board[i][2] == player) ||
+       (board[0][i] == player && board[1][i] == player && board[2][i] == player) {
+         return true;
+       }
+  }
+    if (board[0][0] == player && board[1][1] == player && board[2][2] == player) ||
+       (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
+         return true;
+       }
+    false
+}
+
+fn board_full(board: &[[char; 3]; 3]) -> bool {
+    for row in board {
+     for cell in row {
+       if *cell == ' ' {
+         return false;
+       }
+     }
+  }
+    true
+}
+```
