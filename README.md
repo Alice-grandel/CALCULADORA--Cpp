@@ -79,7 +79,7 @@ fn main() {
       println!("CALCULADORA ENCERRADA!");
          break;
       }
-  }
+   }
 }
 
 fn ler_numero(prompt: &str) -> f64 {
@@ -109,7 +109,7 @@ fn ler_operador(prompt: &str) -> char {
             println!("Operador invalido");
         }
       }
-  }
+   }
 }
 ```
 
