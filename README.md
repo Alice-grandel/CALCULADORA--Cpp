@@ -165,20 +165,17 @@ O programa deverá solicitar ao usuário:
 use std::io;
 
 fn main() {
-
-
     loop {
-        println!("[BEM-VINDO]");
 
-    let salario = read_number("Digite o seu salario");
-     let hora_trabalhada = read_number("Quantas horas vc trabalha por mes?");
+        let salario = obter_numero("\nDigite o seu salario:");
+        let hora_trabalhada = obter_numero("\nQuantas horas vc trabalha no mes?\n");
 
-     let percentual: f64;
-      let salario_bruto = salario * hora_trabalhada;
+        let percentual: f64;
+        let salario_bruto = salario * hora_trabalhada;
 
-    if salario_bruto <= 900.0 {
-        percentual = 0.0; 
-    }else if salario_bruto <= 1500.0 {
+   if salario_bruto <= 900.0 {
+        percentual = 0.0;
+    } else if salario_bruto <= 1500.0 {
         percentual = 5.0;
     } else if salario_bruto <= 2500.0 {
         percentual = 10.0;
@@ -186,43 +183,41 @@ fn main() {
         percentual = 20.0;
     }
 
-    let ir = salario_bruto * (percentual / 100.0);
-     let inss = salario_bruto * 0.10;
-    let fgts = salario_bruto * 0.11;
-     let salario_liquido = salario_bruto - ir - inss;
+        let ir = salario_bruto * (percentual / 100.0);
+        let inss = salario_bruto * 0.10; 
+        let fgts = salario_bruto * 0.11;
+        let salario_liquido = salario_bruto - ir - inss;
 
     println!("[FOLHA-DE-PAGAMENTO]");
-    println!("Salario bruto:  R${:.2}", salario_bruto);
-    println!("IR:(5%)  R${:.2}", ir);
-    println!("INSS:  R${:.2}", inss );
-    println!("FGTS:  R${:.2}", fgts);
-    println!("----------------------------------");
-    println!("Salario liquido:  R${:.2}", salario_liquido);
+    println!("Salario_bruto: {:.2}", salario_bruto);
+    println!("IR:(5%) {:.2}", ir);
+    println!("INSS:(10%) {:.2}", inss);
+    println!("FGTS:(11%) {:.2}", fgts);
+    println!("------------------------------");
+    println!("SALARIO LIQUIDO: {}", salario_liquido);
 
+    
+    println!("\nGOSTARIA DE REABRIR A FOLHA DE PAGAMENTO?\n");
+      let mut resposta = String::new();
+        io::stdin().read_line(&mut resposta).expect("Erro");
 
-    println!("Voce gostaria de refazer [S/N]?");
-     let mut respostas = String::new();
-      io::stdin().read_line(&mut respostas).expect("Erro");
+   if resposta.trim().eq_ignore_ascii_case("n") {
+    println!("\nFOLHA ENCERRADA\n");
+      break;
+       } 
 
-      if respostas.trim().eq_ignore_ascii_case("n") {
-        println!("Programa encerrado");
-         break;
-      }
-
-
-  }
-
+    }
 }
 
-fn read_number(prompt: &str) -> f64 {
-    loop{
-        println!("{}",prompt);
+fn obter_numero(prompt: &str) -> f64 {
+    loop {
+        println!("{}", prompt); 
          let mut input = String::new();
           io::stdin().read_line(&mut input).expect("Erro");
 
         match input.trim().parse::<f64>() {
-            Ok(num) => return num,
-             Err(_) => println!("Valor invalido"),
+         Ok(num) => return num,
+         Err(_) => println!("Valor invalido"),
         }
     }
 }
