@@ -745,3 +745,43 @@ fn board_full(board: &[[char; 3]; 3]) -> bool {
     true
 }
 ```
+
+# EXERCICIO RUST: 9
+Faça um Programa que pergunte em que turno você estuda. Peça para digitar M-Manhã ou t-TARDE ou N- noite.
+
+Imprima a mensagem "Bom Dia!", "Boa Tarde!" ou "Boa Noite!" ou "Valor Inválido!", conforme o caso.
+
+🦀 CODIGO: 
+```
+use std::io;
+
+fn main() {
+
+    let turno = obter_letra("Qual turno da escola vc estuda? (M = Manhã/T = Tarde/N = Noite)");
+
+     match turno {
+      'm' | 'M' => println!("Tenha um Bom dia!"),
+      't' | 'T' => println!("Tenha uma Boa tarde!"),
+      'n' | 'N' => println!("Tenha uma Boa noite!"),
+         
+          _ => println!("Valor invalido"),
+     };
+}
+
+fn obter_letra(prompt: &str) -> char {
+  loop {
+        println!("{}", prompt);
+         let mut entrada = String::new();
+          io::stdin().read_line(&mut entrada).expect("Erro");
+
+        let turno = entrada.trim().chars().next();
+        
+       match turno {
+        Some('m') | Some('M') | Some('T') | Some('t') | Some('n') | Some('N') => return turno.unwrap(),
+         _ => {
+             println!("Letra invalida!");
+         }
+       } 
+    }
+}
+```
