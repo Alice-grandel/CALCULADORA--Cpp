@@ -96,7 +96,7 @@ O programa deverá solicitar ao usuário:
     Salário Líquido               : R$  935,00
 
 # Codigo:     
-<img width="2596" height="2464" alt="folhadepagamento" src="https://github.com/user-attachments/assets/56c05b1b-8e73-4e59-b741-7b428d25b5e2" />
+<img width="2656" height="2464" alt="folhadepagamento" src="https://github.com/user-attachments/assets/747eba0b-ab29-49ed-bf8f-14ba41b1347d" />
 
 
 # EXERCICIO RUST: 3
