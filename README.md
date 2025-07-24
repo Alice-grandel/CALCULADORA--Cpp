@@ -44,74 +44,9 @@ Funcionalidades:
     Perguntar ao usuário se deseja realizar outra operação, repetindo o processo enquanto desejar.
 
  # Codigo:    
-```
-use std::io;
+<img width="2656" height="2824" alt="calculadora" src="https://github.com/user-attachments/assets/2f92142a-5ddc-4f03-8f36-f0d79413c8e9" />
 
-fn main() {
-  loop{
-          println!("=== BEM-VINDOS! === ");
 
-        let num1 = ler_numero("\nDigite um numero\n");
-         let operador = ler_operador("\nDigite um operador (+, -, *, /)\n");
-        let num2 = ler_numero("\nDigite o segundo numero\n");
-
-        let resultado = match operador {
-          '+' => num1 + num2,
-          '-' => num1 - num2,
-          '*' => num1 * num2,
-          '/' => if num2 == 0.0 {
-              println!("\nDivisão por zero invalida\n");
-                return;
-          } else {
-             num1 / num2
-          },
-          _ => unreachable!()
-        };
-      
-      println!("{} {} {} = {}", num1 , operador, num2, resultado);
-
-      println!("\n----------------------------------------\n");
-      println!("\nGOSTARIA DE REINICIAR A CALCULADORA?\n");
-       let mut resposta = String::new();
-        io::stdin().read_line(&mut resposta).expect("Erro");
-
-    if resposta.trim().eq_ignore_ascii_case("n") {
-      println!("CALCULADORA ENCERRADA!");
-         break;
-      }
-   }
-}
-
-fn ler_numero(prompt: &str) -> f64 {
-  loop{
-      println!("{}", prompt);
-       let mut input = String::new();
-        io::stdin().read_line(&mut input).expect("Erro");
-
-      match input.trim().parse::<f64>() {
-        Ok(num) => return num,
-        Err(_) => println!("Valor invalido"),
-      }
-  }
-}
-
-fn ler_operador(prompt: &str) -> char {
-  loop {
-      println!("{}", prompt);
-       let mut input = String::new();
-        io::stdin().read_line(&mut input).expect("Erro");
-
-      let operador = input.trim().chars().next();
-
-      match operador {
-        Some('+') | Some('-') | Some('*') | Some('/') => return operador.unwrap(),
-        _ => {
-            println!("Operador invalido");
-        }
-      }
-   }
-}
-```
 
 ## 🚀 Como estou estudando
 
