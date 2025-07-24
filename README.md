@@ -96,68 +96,8 @@ O programa deverá solicitar ao usuário:
     Salário Líquido               : R$  935,00
 
 # Codigo:     
-```
-use std::io;
+<img width="2596" height="2464" alt="folhadepagamento" src="https://github.com/user-attachments/assets/56c05b1b-8e73-4e59-b741-7b428d25b5e2" />
 
-fn main() {
-    loop {
-
-        let salario = obter_numero("\nDigite o seu salario:");
-        let hora_trabalhada = obter_numero("\nQuantas horas vc trabalha no mes?\n");
-
-        let percentual: f64;
-        let salario_bruto = salario * hora_trabalhada;
-
-   if salario_bruto <= 900.0 {
-        percentual = 0.0;
-    } else if salario_bruto <= 1500.0 {
-        percentual = 5.0;
-    } else if salario_bruto <= 2500.0 {
-        percentual = 10.0;
-    } else {
-        percentual = 20.0;
-    }
-
-        let ir = salario_bruto * (percentual / 100.0);
-        let inss = salario_bruto * 0.10; 
-        let fgts = salario_bruto * 0.11;
-        let salario_liquido = salario_bruto - ir - inss;
-
-    println!("[FOLHA-DE-PAGAMENTO]");
-    println!("Salario_bruto: {:.2}", salario_bruto);
-    println!("IR:(5%) {:.2}", ir);
-    println!("INSS:(10%) {:.2}", inss);
-    println!("FGTS:(11%) {:.2}", fgts);
-    println!("------------------------------");
-    println!("SALARIO LIQUIDO: {}", salario_liquido);
-
-    
-    println!("\nGOSTARIA DE REABRIR A FOLHA DE PAGAMENTO?\n");
-      let mut resposta = String::new();
-        io::stdin().read_line(&mut resposta).expect("Erro");
-
-   if resposta.trim().eq_ignore_ascii_case("n") {
-    println!("\nFOLHA ENCERRADA\n");
-      break;
-       } 
-
-    }
-}
-
-fn obter_numero(prompt: &str) -> f64 {
-    loop {
-        println!("{}", prompt); 
-         let mut input = String::new();
-          io::stdin().read_line(&mut input).expect("Erro");
-
-        match input.trim().parse::<f64>() {
-         Ok(num) => return num,
-         Err(_) => println!("Valor invalido"),
-        }
-    }
-}
-
-```
 
 # EXERCICIO RUST: 3
 
