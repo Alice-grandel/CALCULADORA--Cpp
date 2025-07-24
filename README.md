@@ -114,37 +114,8 @@ Vou montar a tabuada de 5 começando em 4 e terminando em 7:
 5 X 7 = 35
 ```
 CODIGO:
-```
-use std::io;
+<img width="2368" height="1744" alt="tabuada" src="https://github.com/user-attachments/assets/fa91e463-5288-4eec-8150-42b96023c298" />
 
-fn main() { 
-
-    let numero = read_number("Digite um numero");
-    let comecar = read_number("Começar por: ");
-    let terminar = read_number("terminar por: ");
-
-
-    for i in comecar..=terminar {
-        let result = numero * i;
-        println!("{} X {} = {}", numero, i, result);
-    }
-
-
-}
-
-fn read_number(prompt: &str) -> i32 {
-    loop {
-        println!("{}",prompt);
-         let mut input = String::new();
-          io::stdin().read_line(&mut input).expect("Erro");
-
-          match input.trim().parse::<i32>() {
-            Ok(num) => return num,
-             Err(_) => println!("Valor invalido"),
-           } 
-    }
-}
-```
 # EXERCICIO RUST: 4
 
 CAIXA ELETRONICO: Faça um Programa para um caixa eletrônico.
