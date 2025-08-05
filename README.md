@@ -145,81 +145,8 @@ LITRO COMBUSTIVEL:
  Um posto está vendendo combustíveis com a seguinte tabela de descontos: Álcool: até 20 litros, desconto de 3% por litro acima de 20 litros, desconto de 5% por litro Gasolina: até 20 litros, desconto de 4% por litro acima de 20 litros, desconto de 6% por litro
 Escreva um algoritmo que leia o número de litros vendidos, o tipo de combustível (codificado da seguinte forma: A-álcool, G-gasolina), calcule e imprima o valor a ser pago pelo cliente sabendo-se que o preço do litro da gasolina é R$ 2,50 o preço do litro do álcool é R$ 1,90.
 
-```
-use std::io;
+<img width="2512" height="2968" alt="tipo combustivel" src="https://github.com/user-attachments/assets/1c049072-5315-4a3b-b4d9-f859269a9183" />
 
-fn main() {
-
-    loop{
-
-        let a = 1.90;
-        let g = 2.50;
-
-        let tipo_combustivel = combustivel("Qual tipo de combustivel você deseja [A/G]");
-        let litro_vendido = read_number("quantos litros de combustivel foram vendidos?");
-
-        let preco_final = match tipo_combustivel {
-            'A' | 'a' => {
-                        if litro_vendido <= 20.0 {
-                            a * litro_vendido * 0.97
-                        } else {
-                            a * litro_vendido * 0.95
-                        }
-                   }
-            'G' | 'g' => {
-                        if litro_vendido <= 20.0 {
-                            g * litro_vendido * 0.96
-                        } else {
-                            g * litro_vendido * 0.94
-                        }
-                 }
-                 _ => 0.0
-        };
-
-        println!("Preço total:  R${:.2} reais", preco_final);
-
-        println!("\nGostaria de recomeçar [S/N]?\n");
-        let mut resposta = String::new();
-        io::stdin().read_line(&mut resposta).expect("Erro");
-
-        if resposta.trim().eq_ignore_ascii_case("n") {
-            println!("[PROGRAMA-FECHADO!]");
-            break;
-        }
-
-    }
-
-}
-
-fn combustivel(prompt: &str) -> char {
-    loop {
-        println!("{}", prompt);
-         let mut input = String::new();
-          io::stdin().read_line(&mut input).expect("Erro");
-
-         let combustivel = input.trim().chars().next();
-
-        match combustivel {
-            Some('A') | Some('a') | Some('g') | Some('G') => return combustivel.unwrap(),
-            _ => println!("operação invalida"),
-         }
-
-    }
-}
-
-fn read_number(prompt: &str) -> f64 {
-    loop {
-        println!("{}", prompt);
-         let mut input = String::new();
-          io::stdin().read_line(&mut input).expect("Erro");
-
-        match input.trim().parse::<f64>() {
-            Ok(num) => return num,
-            Err(_) => println!("Valor invalido"),
-        }
-    }
-}
-```
 
 # EXERCICIO RUST: 7
 
