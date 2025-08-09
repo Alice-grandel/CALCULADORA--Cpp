@@ -200,36 +200,5 @@ Faça um Programa que pergunte em que turno você estuda. Peça para digitar M-M
 Imprima a mensagem "Bom Dia!", "Boa Tarde!" ou "Boa Noite!" ou "Valor Inválido!", conforme o caso.
 
 🦀 CODIGO: 
-```
-use std::io;
+<img width="1466" height="871" alt="image" src="https://github.com/user-attachments/assets/9f100244-eef1-4b6f-8d80-1fa22ffcf93f" />
 
-fn main() {
-
-    let turno = obter_letra("Qual turno da escola vc estuda? (M = Manhã/T = Tarde/N = Noite)");
-
-     match turno {
-      'm' | 'M' => println!("Tenha um Bom dia!"),
-      't' | 'T' => println!("Tenha uma Boa tarde!"),
-      'n' | 'N' => println!("Tenha uma Boa noite!"),
-         
-          _ => println!("Valor invalido"),
-     };
-}
-
-fn obter_letra(prompt: &str) -> char {
-  loop {
-        println!("{}", prompt);
-         let mut entrada = String::new();
-          io::stdin().read_line(&mut entrada).expect("Erro");
-
-        let turno = entrada.trim().chars().next();
-        
-       match turno {
-        Some('m') | Some('M') | Some('T') | Some('t') | Some('n') | Some('N') => return turno.unwrap(),
-         _ => {
-             println!("Letra invalida!");
-         }
-       } 
-    }
-}
-```
